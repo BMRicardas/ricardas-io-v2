@@ -5,7 +5,7 @@ import { client } from '../../client';
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
 
-import classes from './Footer.module.scss';
+import classes from './Contacts.module.scss';
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -42,12 +42,12 @@ const Footer = () => {
   };
 
   return (
-    <div className={classes.footer}>
+    <div className={classes.contacts}>
       <h2>
         Take <span>a coffee</span> & chat <span>with me</span>
       </h2>
-      <div className={classes.footerCards}>
-        <div className={classes.footerCard}>
+      <div className={classes.cards}>
+        <div className={classes.card}>
           <img src={images.email} alt="email" />
           <a
             href="mailto:ricardas.brazdzius@gmail.com"
@@ -57,7 +57,7 @@ const Footer = () => {
             ricardas.brazdzius@gmail.com
           </a>
         </div>
-        <div className={classes.footerCard}>
+        <div className={classes.card}>
           <img src={images.mobile} alt="mobile" />
           <a
             href="tel:+370 699 83405"
@@ -70,12 +70,12 @@ const Footer = () => {
       </div>
 
       {isFormSubmitted ? (
-        <div className={classes.footerForm}>
+        <div className={classes.form}>
           <h3>Thank you for getting in touch</h3>
         </div>
       ) : (
-        <form className={classes.footerForm} onSubmit={handleSubmit}>
-          <div className={classes.footerFormItem}>
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <div className={classes.formItem}>
             <input
               type="text"
               placeholder="Your Name"
@@ -84,7 +84,7 @@ const Footer = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className={classes.footerFormItem}>
+          <div className={classes.formItem}>
             <input
               type="email"
               placeholder="Your Email"
@@ -93,7 +93,7 @@ const Footer = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className={classes.footerFormItem}>
+          <div className={classes.formItem}>
             <textarea
               placeholder="Your Message"
               value={message}
@@ -101,7 +101,7 @@ const Footer = () => {
               onChange={handleInputChange}
             />
           </div>
-          <button type="submit" disabled={isLoading}>
+          <button className={classes.button} type="submit" disabled={isLoading}>
             {isLoading ? 'Sending...' : 'Send Message'}
           </button>
         </form>
@@ -111,7 +111,7 @@ const Footer = () => {
 };
 
 export default AppWrap(
-  MotionWrap(Footer, classes.footer),
+  MotionWrap(Footer, classes.contacts),
   'contact',
   'white-bg'
 );

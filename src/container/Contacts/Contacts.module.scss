@@ -1,6 +1,6 @@
 @use '../../styles/mixins';
 
-.footer {
+.contacts {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@
     }
   }
 
-  .footerCards {
+  .cards {
     width: 60%;
     display: flex;
     justify-content: space-evenly;
@@ -36,7 +36,7 @@
     flex-wrap: wrap-reverse;
     margin: 6.4rem 3.2rem 3.2rem;
 
-    .footerCard {
+    .card {
       min-width: 29rem;
       display: flex;
       flex-direction: row;
@@ -87,7 +87,7 @@
     }
   }
 
-  .footerForm {
+  .form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,7 +97,11 @@
     flex-direction: column;
     margin: 1.6rem 3.2rem;
 
-    .footerFormItem {
+    @include mixins.mobile {
+      width: 100%;
+    }
+
+    .formItem {
       width: 100%;
 
       margin: 1.2rem 0;
@@ -133,24 +137,9 @@
       &:hover {
         box-shadow: 0 0 2.5rem var(--primary-color);
       }
-
-      //   input {
-
-      //   }
-
-      //   textarea {
-      //     font-size: 2.8rem;
-      //     text-align: left;
-      //     color: var(--gray-color);
-      //     line-height: 1.5;
-
-      //     @include mixins.xl-desktop {
-      //       font-size: 1.3rem;
-      //     }
-      //   }
     }
 
-    button {
+    .button {
       font-size: 2.8rem;
       text-align: left;
       color: var(--gray-color);
