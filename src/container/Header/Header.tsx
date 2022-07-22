@@ -59,7 +59,7 @@ const Header = () => {
         whileInView={scaleVariants.whileInView}
         className={classes.circles}
       >
-        {[images.flutter, images.redux, images.sass].map((circle, i) => (
+        {[images.typescript, images.react, images.sass].map((circle, i) => (
           <div className={classes.circleCmp} key={`circle-${i}`}>
             <img src={circle} alt="" />
           </div>
