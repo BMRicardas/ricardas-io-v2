@@ -1,0 +1,228 @@
+@use '../../styles/mixins';
+
+.skills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+
+  h2 {
+    font-size: 6.4rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--black-color);
+    text-transform: capitalize;
+
+    span {
+      color: var(--secondary-color);
+    }
+
+    @include mixins.xl-desktop {
+      font-size: 4.4rem;
+    }
+
+    @include mixins.mobile {
+      font-size: 3.2rem;
+    }
+  }
+
+  .skillsContainer {
+    width: 80%;
+    margin-top: 4.8rem;
+
+    display: flex;
+    flex-direction: row;
+
+    @include mixins.laptop {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .skillsList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex: 1;
+
+      margin-right: 8rem;
+
+      @include mixins.laptop {
+        margin-right: 0;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .skillsItem {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+
+        margin: 1.6rem 3.2rem;
+
+        transition: all 0.3s ease-in-out;
+
+        @include mixins.xl-desktop {
+          margin: 1.6rem;
+        }
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 15rem;
+          height: 15rem;
+          border-radius: 50%;
+          background-color: #fef4f5;
+
+          img {
+            width: 50%;
+            height: 50%;
+          }
+
+          &:hover {
+            box-shadow: 0 0 2.5rem #fef4f5;
+          }
+
+          @include mixins.xl-desktop {
+            width: 9rem;
+            height: 9rem;
+          }
+
+          @include mixins.mobile {
+            width: 7rem;
+            height: 7rem;
+          }
+        }
+
+        p {
+          font-size: 2.8rem;
+          text-align: left;
+          color: var(--gray-color);
+          line-height: 1.5;
+          font-weight: 500;
+          margin-top: 1.6rem;
+
+          @include mixins.xl-desktop {
+            font-size: 1.3rem;
+            margin-top: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .skillsExp {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+
+      @include mixins.laptop {
+        margin-top: 3.2rem;
+      }
+
+      .skillsExpItem {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 1.6rem 0;
+
+        .skillsExpYear {
+          margin-right: 4.8rem;
+
+          @include mixins.laptop {
+            margin: 0 1.6rem;
+          }
+
+          p {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            text-align: left;
+
+            margin-top: 1.6rem;
+            line-height: 1.5;
+
+            @include mixins.xl-desktop {
+              font-size: 1.6rem;
+            }
+
+            @include mixins.mobile {
+              font-size: 1.45rem;
+            }
+          }
+        }
+
+        .skillsExpWorks {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+
+          .skillsExpWork {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 1.6rem;
+            cursor: pointer;
+
+            h4 {
+              font-size: 3.2rem;
+              font-weight: 500;
+              color: var(--black-color);
+              text-align: left;
+
+              @include mixins.xl-desktop {
+                font-size: 1.6rem;
+              }
+
+              @include mixins.mobile {
+                font-size: 1.45rem;
+              }
+            }
+
+            p {
+              font-size: 2.8rem;
+              font-weight: 400;
+              text-align: left;
+              color: var(--gray-color);
+              line-height: 1.5;
+              margin-top: 0.8rem;
+
+              @include mixins.xl-desktop {
+                font-size: 1.3rem;
+              }
+            }
+          }
+        }
+
+        .skillsTooltip {
+          max-width: 50rem !important;
+          background-color: var(--white-color) !important;
+          box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.1) !important;
+          border-radius: 0.5rem !important;
+          padding: 1.6rem !important;
+          font-size: 2.8rem !important;
+          color: var(--gray-color) !important;
+          text-align: center !important;
+          line-height: 2 !important;
+          opacity: 1 !important;
+
+          @include mixins.xl-desktop {
+            font-size: 1.6rem !important;
+            max-width: 30rem !important;
+            line-height: 1.5 !important;
+          }
+        }
+      }
+    }
+  }
+}
