@@ -1,0 +1,32 @@
+@use '../../styles/mixins';
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 1.6rem;
+
+  .navigationDot {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #cbcbcb;
+    margin: 0.8rem;
+
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+
+    @include mixins.xl-desktop {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+  @include mixins.mobile {
+    display: none;
+  }
+}
