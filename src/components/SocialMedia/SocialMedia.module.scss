@@ -1,0 +1,56 @@
+@use '../../styles/mixins';
+
+.socialMedia {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 1.6rem;
+
+  div {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: var(--white-color);
+    margin: 0.8rem 0;
+    border: 1px solid var(--lightGray-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.3s ease-in-out;
+
+    svg {
+      width: 3rem;
+      height: 3rem;
+      color: var(--gray-color);
+    }
+
+    &:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+
+      svg {
+        color: var(--white-color);
+      }
+    }
+
+    @include mixins.xl-desktop {
+      width: 4rem;
+      height: 4rem;
+
+      margin: 0.4rem 0;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
+  @include mixins.mobile {
+    display: none;
+  }
+}
