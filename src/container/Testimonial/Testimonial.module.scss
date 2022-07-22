@@ -1,0 +1,181 @@
+@use '../../styles/mixins';
+
+.testimonial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+
+  .testimonialItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    // TODO height without min- works better
+    min-height: 45rem;
+    background-color: var(--white-color);
+    padding: 3.2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.1);
+
+    transition: all 0.3s ease-in-out;
+
+    img {
+      width: 15rem;
+      height: 15rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    @include mixins.xl-desktop {
+      min-height: 32rem;
+
+      img {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+
+    @include mixins.laptop {
+      width: 100%;
+    }
+
+    @include mixins.tablet {
+      flex-direction: column;
+    }
+
+    .testimonialContent {
+      flex: 1;
+      height: 100%;
+      padding: 0 3.2rem;
+      text-align: left;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+
+      p {
+        font-size: 2.8rem;
+        text-align: left;
+        color: var(--black-color);
+        line-height: 2;
+
+        @include mixins.xl-desktop {
+          font-size: 2rem;
+        }
+      }
+
+      h4 {
+        font-size: 3.2rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        text-align: left;
+        margin-top: 3.2rem;
+
+        @include mixins.xl-desktop {
+          font-size: 1.6rem;
+        }
+
+        @include mixins.mobile {
+          font-size: 1.45rem;
+        }
+      }
+
+      h5 {
+        font-size: 2.8rem;
+        font-weight: 400;
+        text-align: left;
+        color: var(--gray-color);
+        line-height: 1.5;
+        margin-top: 0.5rem;
+
+        @include mixins.xl-desktop {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  .testimonialBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 1.6rem;
+
+    .testimonialBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border: none;
+      background-color: var(--white-color);
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      margin: 1.6rem;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+        color: var(--secondary-color);
+      }
+
+      &:hover {
+        background-color: var(--secondary-color);
+
+        svg {
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+
+  .testimonialBrands {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+    flex-wrap: wrap;
+    margin-top: 3.2rem;
+
+    div {
+      width: 21rem;
+      margin: 3.2rem;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        filter: grayscale(1);
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+        img {
+          filter: grayscale(0);
+        }
+      }
+
+      @include mixins.xl-desktop {
+        width: 15rem;
+        margin: 2.4rem;
+      }
+
+      @include mixins.mobile {
+        width: 12rem;
+        margin: 1.6rem;
+      }
+    }
+    @include mixins.laptop {
+      width: 100%;
+    }
+  }
+}
