@@ -1,0 +1,203 @@
+@use '../../styles/mixins';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+
+  h2 {
+    font-size: 6.4rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--black-color);
+    text-transform: capitalize;
+
+    span {
+      color: var(--secondary-color);
+    }
+
+    @include mixins.xl-desktop {
+      font-size: 4.4rem;
+    }
+
+    @include mixins.mobile {
+      font-size: 3.2rem;
+    }
+  }
+
+  .footerCards {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    margin: 6.4rem 3.2rem 3.2rem;
+
+    .footerCard {
+      min-width: 29rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 1.6rem 0;
+      padding: 1.6rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      background-color: #fef4f5;
+      transition: all 0.3s ease-in-out;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        margin: 0 1.1rem;
+      }
+
+      a {
+        font-size: 2.8rem;
+        text-align: left;
+        color: var(--gray-color);
+        line-height: 1.5;
+
+        font-weight: 600;
+        text-decoration: none;
+
+        @include mixins.xl-desktop {
+          font-size: 1.3rem;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 0 2.5rem #fef4f5;
+      }
+
+      @include mixins.mobile {
+        width: 100%;
+      }
+
+      &:last-child {
+        background-color: #f2f7fb;
+      }
+    }
+
+    @include mixins.laptop {
+      width: 100%;
+    }
+  }
+
+  .footerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 60%;
+    flex-direction: column;
+    margin: 1.6rem 3.2rem;
+
+    .footerFormItem {
+      width: 100%;
+
+      margin: 1.2rem 0;
+      border-radius: 1rem;
+      background-color: var(--primary-color);
+
+      transition: all 0.3s ease-in-out;
+
+      input,
+      textarea {
+        font-size: 2.8rem;
+        text-align: left;
+        color: var(--gray-color);
+        line-height: 1.5;
+
+        width: 100%;
+        padding: 1.5rem;
+        border: none;
+        border: 0.7rem;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        outline: none;
+
+        @include mixins.xl-desktop {
+          font-size: 1.3rem;
+        }
+      }
+
+      textarea {
+        height: 17rem;
+      }
+
+      &:hover {
+        box-shadow: 0 0 2.5rem var(--primary-color);
+      }
+
+      //   input {
+
+      //   }
+
+      //   textarea {
+      //     font-size: 2.8rem;
+      //     text-align: left;
+      //     color: var(--gray-color);
+      //     line-height: 1.5;
+
+      //     @include mixins.xl-desktop {
+      //       font-size: 1.3rem;
+      //     }
+      //   }
+    }
+
+    button {
+      font-size: 2.8rem;
+      text-align: left;
+      color: var(--gray-color);
+      line-height: 1.5;
+
+      padding: 1.6rem 3.2rem;
+      border-radius: 1rem;
+      border: none;
+      background-color: var(--secondary-color);
+      font-weight: 500;
+      color: var(--white-color);
+      margin: 3.2rem 0 0 0;
+      cursor: pointer;
+
+      @include mixins.xl-desktop {
+        font-size: 1.3rem;
+      }
+
+      @include mixins.laptop {
+        width: 100%;
+        margin: 1.6rem 0;
+      }
+
+      &:disabled,
+      &[disabled] {
+        background-color: var(--gray-color);
+      }
+    }
+
+    h3 {
+      font-size: 6.4rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--black-color);
+      text-transform: capitalize;
+
+      span {
+        color: var(--secondary-color);
+      }
+
+      @include mixins.xl-desktop {
+        font-size: 4.4rem;
+      }
+
+      @include mixins.mobile {
+        font-size: 3.2rem;
+      }
+    }
+  }
+}
