@@ -1,0 +1,237 @@
+@use '../../styles/mixins';
+
+#home {
+  position: relative;
+  background: url('../../assets/images/bgIMG.png');
+  background-size: cover;
+  background-repeat: repeat;
+
+  .wrapper {
+    .copyright {
+      display: none;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+
+  padding: 12.8rem 3.2rem 0;
+
+  @include mixins.xl-desktop {
+    padding-top: 9.6rem;
+  }
+
+  @include mixins.desktop {
+    flex-direction: column;
+  }
+
+  @include mixins.mobile {
+    padding: 9.6rem 1.6rem 3.2rem;
+  }
+
+  .info {
+    flex: 0.65;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+
+    @include mixins.xl-desktop {
+      width: 100%;
+    }
+  }
+
+  .badge {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+
+    .cmp,
+    .tagCmp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.6rem 3.2rem;
+      border: var(--white-color);
+      border-radius: 1.5rem;
+      flex-direction: row;
+      width: auto;
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    }
+
+    .cmp {
+      // TODO
+      //   flex-direction: column;
+
+      p {
+        font-size: 2.8rem;
+        text-align: left;
+        color: var(--gray-color);
+        line-height: 1.5;
+
+        @include mixins.xl-desktop {
+          font-size: 1.3rem;
+        }
+      }
+
+      h1 {
+        font-size: 6.4rem;
+        font-weight: 800;
+        text-align: center;
+        color: var(--black-color);
+        text-transform: capitalize;
+
+        span {
+          color: var(--secondary-color);
+        }
+
+        @include mixins.xl-desktop {
+          font-size: 4.4rem;
+        }
+
+        @include mixins.mobile {
+          font-size: 3.2rem;
+        }
+      }
+    }
+
+    .tagCmp {
+      flex-direction: column;
+      margin-top: 4.8rem;
+      p {
+        font-size: 2.8rem;
+        text-align: left;
+        color: var(--gray-color);
+        line-height: 1.5;
+        width: 100%;
+        text-transform: uppercase;
+        text-align: right;
+
+        @include mixins.xl-desktop {
+          font-size: 1.3rem;
+        }
+      }
+    }
+    span {
+      font-size: 8rem;
+      @include mixins.xl-desktop {
+        font-size: 4rem;
+      }
+    }
+
+    @include mixins.desktop {
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  .img {
+    flex: 1;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+
+    .overlayCircle {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 0;
+      width: 100%;
+      height: 90%;
+    }
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    @include mixins.desktop {
+      margin: 3.2rem 0;
+    }
+  }
+
+  .circles {
+    flex: 0.75;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 100%;
+    margin-left: 1.6rem;
+
+    .circleCmp {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: var(--white-color);
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+
+      img {
+        width: 60%;
+        height: 60%;
+      }
+    }
+
+    .circleCmp:nth-child(1) {
+      width: 20rem;
+      height: 20rem;
+    }
+
+    .circleCmp:nth-child(2) {
+      width: 40rem;
+      height: 40rem;
+    }
+
+    .circleCmp:nth-child(3) {
+      width: 17rem;
+      height: 17rem;
+    }
+
+    @include mixins.xl-desktop {
+      .circleCmp:nth-child(1) {
+        width: 10rem;
+        height: 10rem;
+      }
+
+      .circleCmp:nth-child(2) {
+        margin: 2.8rem;
+        width: 15rem;
+        height: 15rem;
+      }
+
+      .circleCmp:nth-child(3) {
+        width: 7rem;
+        height: 7rem;
+      }
+    }
+
+    @include mixins.desktop {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .circleCmp {
+        margin: 1.6rem;
+      }
+    }
+  }
+}
