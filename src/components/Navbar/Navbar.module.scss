@@ -1,0 +1,179 @@
+@use '../../styles/mixins';
+
+.navbar {
+  width: 100%;
+  font-size: 1.6rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.5rem 3rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(0.4rem);
+  -webkit-backdrop-filter: blur(0.4rem);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: fixed;
+  z-index: 2;
+
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    img {
+      width: 18rem;
+      height: 4rem;
+
+      @include mixins.xl-desktop {
+        width: 9rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  .links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      font-size: 3rem;
+      color: var(--gray-color);
+      line-height: 1.5;
+      text-align: left;
+      margin: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      @include mixins.xl-desktop {
+        font-size: 1.3rem;
+      }
+
+      a {
+        color: var(--gray-color);
+        text-decoration: none;
+        flex-direction: column;
+        position: relative;
+        margin-top: 1rem;
+
+        text-transform: uppercase;
+        font-weight: 500;
+
+        transition: all 0.3s ease-in-out;
+
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: -40%;
+          left: 50%;
+          width: 0.5rem;
+          height: 0.5rem;
+          background-color: transparent;
+          border-radius: 50%;
+          pointer-events: none;
+          transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+          color: var(--secondary-color);
+
+          &::before {
+            background-color: var(--secondary-color);
+          }
+        }
+      }
+    }
+
+    @include mixins.laptop {
+      display: none;
+    }
+  }
+
+  .navbarMenu {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    position: relative;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+
+    svg {
+      width: 70%;
+      height: 70%;
+      color: var(--white-color);
+    }
+
+    div {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 5;
+
+      padding: 1rem;
+      width: 80%;
+      height: 100vh;
+
+      display: none;
+      justify-content: flex-end;
+      align-items: flex-end;
+      flex-direction: column;
+      background: url('../../assets/images/bgWhite.png');
+      background-color: var(--white-color);
+      background-size: cover;
+      background-repeat: repeat;
+
+      box-shadow: 0 0 2rem rgba(168, 168, 168, 0.15);
+
+      svg {
+        width: 3.5rem;
+        height: 3.5rem;
+        color: var(--secondary-color);
+        margin: 0.75rem 1.5rem;
+      }
+
+      ul {
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
+        li {
+          margin: 1.5rem;
+          list-style: none;
+
+          a {
+            color: var(--gray-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+              color: var(--secondary-color);
+            }
+          }
+        }
+      }
+
+      @include mixins.laptop {
+        display: flex;
+      }
+    }
+
+    @include mixins.laptop {
+      display: flex;
+    }
+  }
+}
