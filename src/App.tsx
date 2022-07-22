@@ -6,7 +6,7 @@ import {
   Testimonial,
   Work,
 } from './container';
-import { Footer, Navbar } from './components';
+import { Footer, Navbar, SocialMedia } from './components';
 import classes from './App.module.scss';
 
 export const App = () => {
@@ -20,6 +20,7 @@ export const App = () => {
       <Testimonial />
       <Contacts />
       <Footer />
+      <SocialMedia />
     </div>
   );
 };

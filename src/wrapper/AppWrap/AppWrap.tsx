@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { NavigationDots, SocialMedia } from '../../components';
+import { NavigationDots } from '../../components';
 
 import classes from './AppWrap.module.scss';
 
@@ -12,7 +12,6 @@ export const AppWrap = (
   function HOC() {
     return (
       <div id={idName} className={`${classes.container} ${classNames}`}>
-        <SocialMedia />
         <div className={classes.wrapper}>
           <Component />
         </div>

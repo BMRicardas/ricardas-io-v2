@@ -1,20 +1,38 @@
-import { BsTwitter, BsInstagram } from 'react-icons/bs';
-import { FaFacebookF } from 'react-icons/fa';
+// import { BsFacebook, BsGithub, BsLinkedin } from 'react-icons/bs';
+import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 import classes from './SocialMedia.module.scss';
 
 export const SocialMedia = () => {
   return (
     <div className={classes.socialMedia}>
-      <div>
-        <BsTwitter />
-      </div>
-      <div>
+      <a
+        className={classes.link}
+        href="https://www.linkedin.com/in/ricardas-brazdzius/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Linkedin profile"
+      >
+        <FaLinkedinIn />
+      </a>
+      <a
+        className={classes.link}
+        href="https://github.com/BMRicardas"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Github profile"
+      >
+        <FaGithub />
+      </a>
+      <a
+        className={classes.link}
+        href="https://www.facebook.com/ricardas.brazdzius"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Facebook profile"
+      >
         <FaFacebookF />
-      </div>
-      <div>
-        <BsInstagram />
-      </div>
+      </a>
     </div>
   );
 };
