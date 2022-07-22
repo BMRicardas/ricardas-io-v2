@@ -4,8 +4,6 @@ import { NavigationDots, SocialMedia } from '../../components';
 
 import classes from './AppWrap.module.scss';
 
-const currentYear = new Date().getFullYear();
-
 export const AppWrap = (
   Component: FC,
   idName: string,
@@ -17,11 +15,6 @@ export const AppWrap = (
         <SocialMedia />
         <div className={classes.wrapper}>
           <Component />
-
-          <div className={classes.copyright}>
-            <p className={classes.pText}>@{currentYear} Ričardas</p>
-            <p className={classes.pText}>All rights reserved.</p>
-          </div>
         </div>
         <NavigationDots active={idName} />
       </div>

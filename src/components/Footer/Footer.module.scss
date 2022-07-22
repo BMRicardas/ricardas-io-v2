@@ -1,0 +1,33 @@
+@use '../../styles/mixins';
+
+.footer {
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+  background: var(--primary-color);
+  padding: 1.5rem;
+
+  p {
+    color: var(--gray-color);
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: var(--black-color);
+  }
+
+  @include mixins.xl-desktop {
+    font-size: 1.3rem;
+  }
+}
+
+.link {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: var(--black-color);
+  }
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+}
