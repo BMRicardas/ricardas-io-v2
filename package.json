@@ -29,7 +29,10 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc"
+    "lint:styles": "npx stylelint \"**/*.scss\"",
+    "lint:styles:fix": "npm run lint:styles -- --fix",
+    "lint:format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
+    "lint:format:fix": "npx prettier --write \"src/**\""
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +63,11 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-recommended": "^8.0.0",
+    "stylelint-config-sass-guidelines": "^9.0.1"
   }
 }
