@@ -8,7 +8,7 @@ interface Props {
 
 export const Logo: FC<Props> = ({ shrunk }) => {
   const logoActive = shrunk;
-  const logoClass = [classes.logo, logoActive && classes.active];
+  const logoClass = [classes.logo, logoActive ? classes.active : ''];
 
   return (
     <div className={logoClass.join(' ')}>
