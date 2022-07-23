@@ -15,20 +15,18 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   position: fixed;
   z-index: 2;
+  // margin: 10rem 0 10rem 0;
 
   .logo {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
 
-    img {
-      width: 18rem;
-      height: 4rem;
+    font-size: 4rem;
 
-      @include mixins.xl-desktop {
-        width: 9rem;
-        height: 2rem;
-      }
+    @include mixins.xl-desktop {
+      font-size: 2.3rem;
     }
   }
 

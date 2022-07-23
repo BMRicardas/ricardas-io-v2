@@ -1,18 +1,34 @@
 import { useState } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
+// import { FaCode } from 'react-icons/fa';
 
-import { images } from '../../constants';
+import { Logo } from '../Logo/Logo';
 
 import classes from './Navbar.module.scss';
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [isNavbarShrunk, setIsNavbarShrunk] = useState(false);
+
+  const shrinkNavbar = () => {
+    if (window.scrollY >= 1) {
+      setIsNavbarShrunk(true);
+    } else {
+      setIsNavbarShrunk(false);
+    }
+  };
+
+  window.addEventListener('scroll', shrinkNavbar);
 
   return (
     <nav className={classes.navbar}>
       <div className={classes.logo}>
-        <img src={images.logo} alt="logo" />
+        {/* <div>
+          <FaCode />
+        </div>
+        ricardas.io */}
+        <Logo shrunk={isNavbarShrunk} />
       </div>
       <ul className={classes.links}>
         {['home', 'about', 'work', 'skills', 'contact'].map((item) => (

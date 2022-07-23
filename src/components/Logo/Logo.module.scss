@@ -1,0 +1,65 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-weight: 500;
+  color: var(--secondary-color);
+  position: relative;
+}
+
+.logo.active {
+  .image {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+  }
+
+  .less {
+    transform: translate(120%, 11%);
+  }
+  .slash {
+    transform: skew(29deg) translateX(-36%);
+  }
+  .more {
+    transform: translate(-70%, -9%);
+  }
+
+  .title {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.title {
+  opacity: 1;
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.5rem;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  height: 3.5rem;
+  border-radius: 50%;
+  transition: all 0.5s;
+  margin-right: 0.5rem;
+}
+
+.less {
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+.slash {
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+.more {
+  display: inline-block;
+  transition: all 0.5s;
+}
