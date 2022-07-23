@@ -6,3 +6,8 @@ html {
   font-size: 62.5%; // 10px
   font-family: 'DM Sans', sans-serif;
 }
+
+::selection {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
