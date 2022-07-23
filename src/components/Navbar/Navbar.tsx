@@ -12,7 +12,7 @@ export const Navbar = () => {
   const [isNavbarShrunk, setIsNavbarShrunk] = useState(false);
 
   const shrinkNavbar = () => {
-    if (window.scrollY >= 1) {
+    if (window.scrollY >= 80) {
       setIsNavbarShrunk(true);
     } else {
       setIsNavbarShrunk(false);
