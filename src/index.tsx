@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { App } from './App';
+import { VisibleContextProvider } from './context/visible-context';
 
 import './styles/index.scss';
 
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <VisibleContextProvider>
+      <App />
+    </VisibleContextProvider>
   </React.StrictMode>
 );
