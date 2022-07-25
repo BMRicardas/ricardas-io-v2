@@ -29,6 +29,8 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "react/no-array-index-key": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
@@ -47,6 +49,8 @@
         "newlines-between": "always"
       }
     ],
+    "consistent-return": "off",
+    "no-undef": "off",
     "no-underscore-dangle": "off",
     "react/function-component-definition": [
       "error",
