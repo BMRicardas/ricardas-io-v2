@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { client, urlFor } from '../../client';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { VisibleContext } from '../../context/visible-context';
 
 import classes from './Testimonial.module.scss';
 
@@ -47,6 +49,14 @@ const Testimonial = () => {
   const [testimonials, setTestimonials] = useState<TestimonialItem[] | []>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const testimonialsRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(testimonialsRef, { threshold: 0.5 });
+  const { visibleHandler } = useContext(VisibleContext);
+
+  if (entry?.isIntersecting) {
+    visibleHandler(entry?.target.id);
+  }
+
   useEffect(() => {
     const query = '*[_type == "testimonials"]';
     const brandsQuery = '*[_type == "brands"]';
@@ -67,7 +77,11 @@ const Testimonial = () => {
   const testi = testimonials[currentIndex];
 
   return (
-    <div className={classes.testimonial}>
+    <section
+      ref={testimonialsRef}
+      id="testimonials"
+      className={classes.testimonial}
+    >
       {testimonials.length && (
         <>
           <div className={classes.testimonialItem}>
@@ -121,12 +135,12 @@ const Testimonial = () => {
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
 export default AppWrap(
   MotionWrap(Testimonial, classes.testimonial),
-  'testimonial',
+  'testimonials',
   'primary-bg'
 );

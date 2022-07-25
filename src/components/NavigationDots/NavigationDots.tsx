@@ -1,12 +1,14 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+
+import { VisibleContext } from '../../context/visible-context';
 
 import classes from './NavigationDots.module.scss';
 
-interface Props {
-  active: any;
-}
+export const NavigationDots: FC = () => {
+  const { visible } = useContext(VisibleContext);
 
-export const NavigationDots: FC<Props> = ({ active }) => {
+  console.log(visible);
+
   return (
     <div className={classes.navigation}>
       {['home', 'about', 'work', 'skills', 'testimonials', 'contact'].map(
@@ -15,8 +17,8 @@ export const NavigationDots: FC<Props> = ({ active }) => {
             href={`#${item}`}
             key={item + i}
             className={classes.navigationDot}
-            style={active === item ? { backgroundColor: '#313BAC' } : {}}
-            aria-label={item}
+            style={visible === item ? { backgroundColor: '#313BAC' } : {}}
+            title={item.toUpperCase()}
           >
             <span aria-hidden="true" />
           </a>

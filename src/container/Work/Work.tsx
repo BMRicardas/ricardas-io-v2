@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 
 import { client, urlFor } from '../../client';
 import { AppWrap, MotionWrap } from '../../wrapper';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { VisibleContext } from '../../context/visible-context';
 
 import classes from './Work.module.scss';
 
@@ -33,6 +35,14 @@ const Work = () => {
   const [works, setWorks] = useState<WorkItem[] | []>([]);
   const [filterWork, setFilterWork] = useState<WorkItem[] | []>([]);
 
+  const workRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(workRef, { threshold: 0.5 });
+  const { visibleHandler } = useContext(VisibleContext);
+
+  if (entry?.isIntersecting) {
+    visibleHandler(entry?.target.id);
+  }
+
   useEffect(() => {
     const query = '*[_type == "works"]';
 
@@ -58,7 +68,7 @@ const Work = () => {
   };
 
   return (
-    <div className={classes.works}>
+    <section ref={workRef} id="work" className={classes.works}>
       <h2>
         My Creative <span>Portfolio</span>
         <br />
@@ -140,7 +150,7 @@ const Work = () => {
           </div>
         ))}
       </motion.div>
-    </div>
+    </section>
   );
 };
 

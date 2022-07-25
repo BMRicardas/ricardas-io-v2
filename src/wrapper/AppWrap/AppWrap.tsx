@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import { NavigationDots } from '../../components';
-
 import classes from './AppWrap.module.scss';
 
 export const AppWrap = (
@@ -15,7 +13,7 @@ export const AppWrap = (
         <div className={classes.wrapper}>
           <Component />
         </div>
-        <NavigationDots active={idName} />
+        {/* <NavigationDots active={idName} /> */}
       </div>
     );
   };

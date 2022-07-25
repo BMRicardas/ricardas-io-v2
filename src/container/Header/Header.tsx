@@ -1,6 +1,9 @@
+import { useContext, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import { images } from '../../constants';
+import { VisibleContext } from '../../context/visible-context';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { AppWrap } from '../../wrapper';
 
 import classes from './Header.module.scss';
@@ -17,8 +20,16 @@ const scaleVariants = {
 };
 
 const Header = () => {
+  const homeRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(homeRef, { threshold: 0.5 });
+  const { visibleHandler } = useContext(VisibleContext);
+
+  if (entry?.isIntersecting) {
+    visibleHandler(entry?.target.id);
+  }
+
   return (
-    <div className={classes.header}>
+    <div ref={homeRef} id="home" className={classes.header}>
       <motion.div
         whileInView={{ x: [-100, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}

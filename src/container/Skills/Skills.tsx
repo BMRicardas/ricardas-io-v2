@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useContext, useEffect, useRef, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import { client, urlFor } from '../../client';
-import { AppWrap, MotionWrap } from '../../wrapper';
+import { VisibleContext } from '../../context/visible-context';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { MotionWrap } from '../../wrapper';
 
 import classes from './Skills.module.scss';
 
@@ -48,6 +50,14 @@ const Skills = () => {
   const [experiences, setExperiences] = useState<Experience[] | []>([]);
   const [skills, setSkills] = useState<Skill[] | []>([]);
 
+  const skillsRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(skillsRef, { threshold: 0.5 });
+  const { visibleHandler } = useContext(VisibleContext);
+
+  if (entry?.isIntersecting) {
+    visibleHandler(entry?.target.id);
+  }
+
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
@@ -62,71 +72,71 @@ const Skills = () => {
   }, []);
 
   return (
-    <div className={classes.skills}>
+    <section ref={skillsRef} id="skills" className={classes.skills}>
       <h2>Skills & Experiences</h2>
-
-      <div className={classes.skillsContainer}>
-        <motion.div className={classes.skillsList}>
-          {skills.map((skill) => (
-            <motion.div
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ duration: 0.5 }}
-              className={classes.skillsItem}
-              key={skill.name}
-            >
-              <div style={{ backgroundColor: skill.bgColor }}>
-                <img src={`${urlFor(skill.icon)}`} alt={skill.name} />
-              </div>
-              <p>{skill.name}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-        <motion.div className={classes.skillsExp}>
-          {experiences.map((experience) => (
-            <motion.div className={classes.skillsExpItem} key={experience.year}>
-              <div className={classes.skillsExpYear}>
-                <p>{experience.year}</p>
-              </div>
-              <motion.div className={classes.skillsExpWorks}>
-                {experience.works.map((work) => (
-                  <>
-                    <motion.div
-                      whileInView={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.5 }}
-                      className={classes.skillsExpWork}
-                      data-tip={work.desc}
-                      data-for={work.name}
-                      key={work.name}
-                      onMouseEnter={() => showTooltip(true)}
-                      onMouseLeave={() => {
-                        showTooltip(false);
-                        setTimeout(() => showTooltip(true), 50);
-                      }}
-                    >
-                      <h4>{work.name}</h4>
-                      <p>{work.company}</p>
-                    </motion.div>
-                    {tooltip && (
-                      <ReactTooltip
-                        id={work.name}
-                        effect="solid"
-                        arrowColor="#fff"
-                        className={classes.skillsTooltip}
-                      />
-                    )}
-                  </>
-                ))}
+      <div className={classes.wrapper}>
+        <div className={classes.skillsContainer}>
+          <motion.div className={classes.skillsList}>
+            {skills.map((skill) => (
+              <motion.div
+                whileInView={{ opacity: [0, 1] }}
+                transition={{ duration: 0.5 }}
+                className={classes.skillsItem}
+                key={skill.name}
+              >
+                <div style={{ backgroundColor: skill.bgColor }}>
+                  <img src={`${urlFor(skill.icon)}`} alt={skill.name} />
+                </div>
+                <p>{skill.name}</p>
               </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+          <motion.div className={classes.skillsExp}>
+            {experiences.map((experience) => (
+              <motion.div
+                className={classes.skillsExpItem}
+                key={experience.year}
+              >
+                <div className={classes.skillsExpYear}>
+                  <p>{experience.year}</p>
+                </div>
+                <motion.div className={classes.skillsExpWorks}>
+                  {experience.works.map((work) => (
+                    <>
+                      <motion.div
+                        whileInView={{ opacity: [0, 1] }}
+                        transition={{ duration: 0.5 }}
+                        className={classes.skillsExpWork}
+                        data-tip={work.desc}
+                        data-for={work.name}
+                        key={work.name}
+                        onMouseEnter={() => showTooltip(true)}
+                        onMouseLeave={() => {
+                          showTooltip(false);
+                          setTimeout(() => showTooltip(true), 50);
+                        }}
+                      >
+                        <h4>{work.name}</h4>
+                        <p>{work.company}</p>
+                      </motion.div>
+                      {tooltip && (
+                        <ReactTooltip
+                          id={work.name}
+                          effect="solid"
+                          arrowColor="#fff"
+                          className={classes.skillsTooltip}
+                        />
+                      )}
+                    </>
+                  ))}
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default AppWrap(
-  MotionWrap(Skills, classes.skills),
-  'skills',
-  'white-bg'
-);
+export default MotionWrap(Skills, classes.skills);

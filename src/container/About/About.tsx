@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { client, urlFor } from '../../client';
-import { AppWrap, MotionWrap } from '../../wrapper';
+import { VisibleContext } from '../../context/visible-context';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { MotionWrap } from '../../wrapper';
 
 import classes from './About.module.scss';
 
@@ -26,35 +28,45 @@ interface AboutItem {
 const About = () => {
   const [abouts, setAbouts] = useState<AboutItem[] | []>([]);
 
+  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(aboutRef, { threshold: 0.5 });
+  const { visibleHandler } = useContext(VisibleContext);
+
+  if (entry?.isIntersecting) {
+    visibleHandler(entry?.target.id);
+  }
+
   useEffect(() => {
     const query = '*[_type == "abouts"]';
     client.fetch(query).then((data) => setAbouts(data));
   }, []);
 
   return (
-    <div className={classes.about}>
-      <h2>
-        I Know That <span>Good Development</span>
-        <br />
-        means <span>Good Business</span>
-      </h2>
-      <div className={classes.profiles}>
-        {abouts.map((about, i) => (
-          <motion.div
-            whileInView={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5, type: 'tween' }}
-            className={classes.profileItem}
-            key={about.title + i}
-          >
-            <img src={`${urlFor(about.imgUrl)}`} alt={about.title} />
-            <h2 style={{ marginTop: '2rem' }}>{about.title}</h2>
-            <p style={{ marginTop: '1rem' }}>{about.description}</p>
-          </motion.div>
-        ))}
+    <section ref={aboutRef} id="about" className={classes.about}>
+      <div className={classes.wrapper}>
+        <h2>
+          I Know That <span>Good Development</span>
+          <br />
+          means <span>Good Business</span>
+        </h2>
+        <div className={classes.profiles}>
+          {abouts.map((about, i) => (
+            <motion.div
+              whileInView={{ opacity: 1 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.5, type: 'tween' }}
+              className={classes.profileItem}
+              key={about.title + i}
+            >
+              <img src={`${urlFor(about.imgUrl)}`} alt={about.title} />
+              <h2 style={{ marginTop: '2rem' }}>{about.title}</h2>
+              <p style={{ marginTop: '1rem' }}>{about.description}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default AppWrap(MotionWrap(About, classes.about), 'about', 'white-bg');
+export default MotionWrap(About, classes.about);
