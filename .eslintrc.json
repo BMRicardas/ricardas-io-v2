@@ -26,6 +26,7 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/jsx-key": ["error", { "checkFragmentShorthand": true }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "react/no-array-index-key": "off",
