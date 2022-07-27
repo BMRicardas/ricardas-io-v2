@@ -45,6 +45,11 @@
 
     @include mixins.tablet {
       flex-direction: column;
+      padding: 3.2rem 1.5rem;
+    }
+
+    @include mixins.mobile {
+      padding: 3.2rem 0.5rem;
     }
 
     .testimonialContent {
