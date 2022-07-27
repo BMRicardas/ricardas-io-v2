@@ -3,7 +3,23 @@
 .about {
   flex: 1;
   width: 100%;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
+  background-color: var(--white-color);
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    padding: 6.4rem 3.2rem;
+
+    @include mixins.mobile {
+      padding: 6.4rem 1.6rem 3.2rem;
+    }
+  }
 
   h2 {
     font-size: 6.4rem;

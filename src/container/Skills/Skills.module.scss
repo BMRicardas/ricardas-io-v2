@@ -6,7 +6,17 @@
   align-items: center;
   flex: 1;
   width: 100%;
+  min-height: 100vh;
+
   flex-direction: column;
+  background-color: var(--white-color);
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
 
   h2 {
     font-size: 6.4rem;

@@ -208,19 +208,36 @@
 
     @include mixins.xl-desktop {
       .circleCmp:nth-child(1) {
-        width: 10rem;
-        height: 10rem;
-      }
-
-      .circleCmp:nth-child(2) {
-        margin: 2.8rem;
         width: 15rem;
         height: 15rem;
       }
 
+      .circleCmp:nth-child(2) {
+        margin: 2.8rem;
+        width: 20rem;
+        height: 20rem;
+      }
+
       .circleCmp:nth-child(3) {
-        width: 7rem;
-        height: 7rem;
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+
+    @include mixins.mobile {
+      .circleCmp:nth-child(1) {
+        width: 9rem;
+        height: 9rem;
+      }
+
+      .circleCmp:nth-child(2) {
+        width: 12rem;
+        height: 12rem;
+      }
+
+      .circleCmp:nth-child(3) {
+        width: 6rem;
+        height: 6rem;
       }
     }
 
