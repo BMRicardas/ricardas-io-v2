@@ -16,10 +16,9 @@ export const useIntersectionObserver = (
   const [entry, setEntry] = useState<IntersectionObserverEntry>();
 
   const frozen = entry?.isIntersecting && freezeOnceVisible;
-  // TODO
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
-    setEntry(entry);
+
+  const updateEntry = ([myEntry]: IntersectionObserverEntry[]): void => {
+    setEntry(myEntry);
   };
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export const useIntersectionObserver = (
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [elementRef, JSON.stringify(threshold), root, rootMargin, frozen]);
+  }, [elementRef, root, rootMargin, frozen, threshold]);
 
   return entry;
 };
