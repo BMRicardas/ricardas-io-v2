@@ -52,10 +52,10 @@ const Skills = () => {
 
   const skillsRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(skillsRef, { threshold: 0.5 });
-  const { visibleHandler } = useContext(VisibleContext);
+  const visibleCtx = useContext(VisibleContext);
 
   if (entry?.isIntersecting) {
-    visibleHandler(entry?.target.id);
+    visibleCtx?.visibleHandler(entry?.target.id);
   }
 
   useEffect(() => {

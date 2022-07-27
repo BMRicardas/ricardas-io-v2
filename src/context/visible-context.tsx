@@ -1,8 +1,8 @@
-import { createContext, FC, ReactNode, useState } from 'react';
+import { createContext, FC, ReactNode, useMemo, useState } from 'react';
 
 export interface ContextProps {
-  visible: string;
-  visibleHandler: () => void;
+  visibleSection: string;
+  visibleHandler: (id: string) => void;
 }
 
 interface Props {
@@ -18,14 +18,15 @@ export const VisibleContextProvider: FC<Props> = ({ children }) => {
     setVisibleSection(id);
   };
 
+  const value = useMemo<ContextProps>(
+    () => ({
+      visibleSection,
+      visibleHandler,
+    }),
+    []
+  );
+
   return (
-    <VisibleContext.Provider
-      value={{
-        visible: visibleSection,
-        visibleHandler,
-      }}
-    >
-      {children}
-    </VisibleContext.Provider>
+    <VisibleContext.Provider value={value}>{children}</VisibleContext.Provider>
   );
 };

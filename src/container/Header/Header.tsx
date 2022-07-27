@@ -22,10 +22,10 @@ const scaleVariants = {
 const Header = () => {
   const homeRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(homeRef, { threshold: 0.5 });
-  const { visibleHandler } = useContext(VisibleContext);
+  const visibleCtx = useContext(VisibleContext);
 
   if (entry?.isIntersecting) {
-    visibleHandler(entry?.target.id);
+    visibleCtx?.visibleHandler(entry?.target.id);
   }
 
   return (

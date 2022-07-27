@@ -20,10 +20,10 @@ const Footer = () => {
 
   const contactsRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(contactsRef, { threshold: 0.5 });
-  const { visibleHandler } = useContext(VisibleContext);
+  const visibleCtx = useContext(VisibleContext);
 
   if (entry?.isIntersecting) {
-    visibleHandler(entry?.target.id);
+    visibleCtx?.visibleHandler(entry?.target.id);
   }
 
   const { name, email, message } = formData;

@@ -5,9 +5,7 @@ import { VisibleContext } from '../../context/visible-context';
 import classes from './NavigationDots.module.scss';
 
 export const NavigationDots: FC = () => {
-  const { visible } = useContext(VisibleContext);
-
-  console.log(visible);
+  const visibleCtx = useContext(VisibleContext);
 
   return (
     <div className={classes.navigation}>
@@ -17,7 +15,11 @@ export const NavigationDots: FC = () => {
             href={`#${item}`}
             key={item + i}
             className={classes.navigationDot}
-            style={visible === item ? { backgroundColor: '#313BAC' } : {}}
+            style={
+              visibleCtx?.visibleSection === item
+                ? { backgroundColor: '#313BAC' }
+                : {}
+            }
             title={item.toUpperCase()}
           >
             <span aria-hidden="true" />
