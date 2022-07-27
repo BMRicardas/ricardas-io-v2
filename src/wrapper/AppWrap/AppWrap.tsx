@@ -13,7 +13,6 @@ export const AppWrap = (
         <div className={classes.wrapper}>
           <Component />
         </div>
-        {/* <NavigationDots active={idName} /> */}
       </div>
     );
   };

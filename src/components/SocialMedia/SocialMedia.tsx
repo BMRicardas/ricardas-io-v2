@@ -1,4 +1,3 @@
-// import { BsFacebook, BsGithub, BsLinkedin } from 'react-icons/bs';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 import classes from './SocialMedia.module.scss';
