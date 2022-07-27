@@ -67,6 +67,10 @@
       flex-direction: row;
       width: auto;
       box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+
+      @include mixins.mobile {
+        padding: 0.8rem 1.6rem;
+      }
     }
 
     .cmp {
@@ -136,22 +140,13 @@
   }
 
   .img {
-    flex: 1;
+    // flex: 1;
     height: 100%;
+    width: 100%;
 
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    position: relative;
-
-    .overlayCircle {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      z-index: 0;
-      width: 100%;
-      height: 90%;
-    }
+    justify-content: center;
+    align-items: center;
 
     img {
       width: 100%;
@@ -161,6 +156,7 @@
 
     @include mixins.desktop {
       margin: 3.2rem 0;
+      // width: 80%;
     }
   }
 
@@ -192,18 +188,18 @@
     }
 
     .circleCmp:nth-child(1) {
-      width: 20rem;
-      height: 20rem;
+      width: 17rem;
+      height: 17rem;
     }
 
     .circleCmp:nth-child(2) {
-      width: 40rem;
-      height: 40rem;
+      width: 30rem;
+      height: 30rem;
     }
 
     .circleCmp:nth-child(3) {
-      width: 17rem;
-      height: 17rem;
+      width: 12rem;
+      height: 12rem;
     }
 
     @include mixins.xl-desktop {
@@ -248,6 +244,21 @@
 
       .circleCmp {
         margin: 1.6rem;
+
+        &:nth-child(1) {
+          width: 9rem;
+          height: 9rem;
+        }
+
+        &:nth-child(2) {
+          width: 12rem;
+          height: 12rem;
+        }
+
+        &:nth-child(3) {
+          width: 6rem;
+          height: 6rem;
+        }
       }
     }
   }
