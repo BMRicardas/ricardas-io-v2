@@ -23,7 +23,7 @@ export const VisibleContextProvider: FC<Props> = ({ children }) => {
       visibleSection,
       visibleHandler,
     }),
-    []
+    [visibleSection]
   );
 
   return (
