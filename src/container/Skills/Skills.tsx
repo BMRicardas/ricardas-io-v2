@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 
 import { client, urlFor } from '../../client';
 import { VisibleContext } from '../../context/visible-context';
+import { useVisibilityId } from '../../hooks';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { MotionWrap } from '../../wrapper';
 
@@ -54,9 +55,7 @@ const Skills = () => {
   const entry = useIntersectionObserver(skillsRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
-  if (entry?.isIntersecting) {
-    visibleCtx?.visibleHandler(entry?.target.id);
-  }
+  useVisibilityId(entry, visibleCtx?.visibleHandler);
 
   useEffect(() => {
     const query = '*[_type == "experiences"]';

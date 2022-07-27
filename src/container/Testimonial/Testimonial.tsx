@@ -7,6 +7,7 @@ import { AppWrap, MotionWrap } from '../../wrapper';
 import { client, urlFor } from '../../client';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { VisibleContext } from '../../context/visible-context';
+import { useVisibilityId } from '../../hooks';
 
 import classes from './Testimonial.module.scss';
 
@@ -53,9 +54,7 @@ const Testimonial = () => {
   const entry = useIntersectionObserver(testimonialsRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
-  if (entry?.isIntersecting) {
-    visibleCtx?.visibleHandler(entry?.target.id);
-  }
+  useVisibilityId(entry, visibleCtx?.visibleHandler);
 
   useEffect(() => {
     const query = '*[_type == "testimonials"]';

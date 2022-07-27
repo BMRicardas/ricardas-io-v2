@@ -6,6 +6,7 @@ import { client, urlFor } from '../../client';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { VisibleContext } from '../../context/visible-context';
+import { useVisibilityId } from '../../hooks';
 
 import classes from './Work.module.scss';
 
@@ -39,9 +40,7 @@ const Work = () => {
   const entry = useIntersectionObserver(workRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
-  if (entry?.isIntersecting) {
-    visibleCtx?.visibleHandler(entry?.target.id);
-  }
+  useVisibilityId(entry, visibleCtx?.visibleHandler);
 
   useEffect(() => {
     const query = '*[_type == "works"]';

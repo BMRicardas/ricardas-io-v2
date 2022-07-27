@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
 import { client } from '../../client';
 import { images } from '../../constants';
 import { VisibleContext } from '../../context/visible-context';
+import { useVisibilityId } from '../../hooks';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { MotionWrap } from '../../wrapper';
 
@@ -22,9 +23,7 @@ const Footer = () => {
   const entry = useIntersectionObserver(contactsRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
-  if (entry?.isIntersecting) {
-    visibleCtx?.visibleHandler(entry?.target.id);
-  }
+  useVisibilityId(entry, visibleCtx?.visibleHandler);
 
   const { name, email, message } = formData;
 

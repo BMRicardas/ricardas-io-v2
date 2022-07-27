@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 
 import { client, urlFor } from '../../client';
 import { VisibleContext } from '../../context/visible-context';
+import { useVisibilityId } from '../../hooks';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { MotionWrap } from '../../wrapper';
 
@@ -32,9 +33,7 @@ const About = () => {
   const entry = useIntersectionObserver(aboutRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
-  if (entry?.isIntersecting) {
-    visibleCtx?.visibleHandler(entry?.target.id);
-  }
+  useVisibilityId(entry, visibleCtx?.visibleHandler);
 
   useEffect(() => {
     const query = '*[_type == "abouts"]';

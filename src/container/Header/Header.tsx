@@ -5,6 +5,7 @@ import { images } from '../../constants';
 import { VisibleContext } from '../../context/visible-context';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { AppWrap } from '../../wrapper';
+import { useVisibilityId } from '../../hooks';
 
 import classes from './Header.module.scss';
 
@@ -24,9 +25,7 @@ const Header = () => {
   const entry = useIntersectionObserver(homeRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
-  if (entry?.isIntersecting) {
-    visibleCtx?.visibleHandler(entry?.target.id);
-  }
+  useVisibilityId(entry, visibleCtx?.visibleHandler);
 
   return (
     <div ref={homeRef} id="home" className={classes.header}>
