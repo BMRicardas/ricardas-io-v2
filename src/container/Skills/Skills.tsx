@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import { client, urlFor } from '../../client';
@@ -101,14 +101,13 @@ const Skills = () => {
                 </div>
                 <motion.div className={classes.skillsExpWorks}>
                   {experience.works.map((work) => (
-                    <>
+                    <Fragment key={work.name}>
                       <motion.div
                         whileInView={{ opacity: [0, 1] }}
                         transition={{ duration: 0.5 }}
                         className={classes.skillsExpWork}
                         data-tip={work.desc}
                         data-for={work.name}
-                        key={work.name}
                         onMouseEnter={() => showTooltip(true)}
                         onMouseLeave={() => {
                           showTooltip(false);
@@ -126,7 +125,7 @@ const Skills = () => {
                           className={classes.skillsTooltip}
                         />
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </motion.div>
               </motion.div>
