@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
+import { FaPhoneSquareAlt } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 
 import { client } from '../../client';
-import { images } from '../../constants';
 import { VisibleContext } from '../../context/visible-context';
 import { useVisibilityId } from '../../hooks';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
@@ -57,26 +58,17 @@ const Footer = () => {
           Take <span>a coffee</span> & chat <span>with me</span>
         </h2>
         <div className={classes.cards}>
-          <div className={classes.card}>
-            <img src={images.email} alt="email" />
-            <a
-              href="mailto:ricardas.brazdzius@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ricardas.brazdzius@gmail.com
-            </a>
-          </div>
-          <div className={classes.card}>
-            <img src={images.mobile} alt="mobile" />
-            <a
-              href="tel:+370 699 83405"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              +370 699 83405
-            </a>
-          </div>
+          <a
+            href="mailto:ricardas.brazdzius@gmail.com"
+            className={classes.card}
+          >
+            <MdEmail className={classes.img} />
+            ricardas.brazdzius@gmail.com
+          </a>
+          <a href="tel:+370 699 83405" className={classes.card}>
+            <FaPhoneSquareAlt className={classes.img} />
+            +370 699 83405
+          </a>
         </div>
 
         {isFormSubmitted ? (
