@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
-// import { FaCode } from 'react-icons/fa';
 
 import { Logo } from '../Logo/Logo';
 
@@ -24,10 +23,6 @@ export const Navbar = () => {
   return (
     <nav className={classes.navbar}>
       <div className={classes.logo}>
-        {/* <div>
-          <FaCode />
-        </div>
-        ricardas.io */}
         <Logo shrunk={isNavbarShrunk} />
       </div>
       <ul className={classes.links}>
