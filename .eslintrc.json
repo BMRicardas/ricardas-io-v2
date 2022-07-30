@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2021": true
   },
   "extends": ["plugin:react/recommended", "airbnb", "airbnb/hooks", "prettier"],
@@ -11,7 +12,7 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
-        "paths": [".", "src"]
+        "moduleDirectory": ["src", "node_modules"]
       }
     }
   },
@@ -46,7 +47,7 @@
     "import/order": [
       "error",
       {
-        "groups": [["builtin", "external"], "parent", "internal", "sibling"],
+        "groups": [["builtin", "external"], "internal", "parent", "sibling"],
         "newlines-between": "always"
       }
     ],
