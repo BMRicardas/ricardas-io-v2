@@ -1,6 +1,6 @@
 import sanityClient from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
-// eslint-disable-next-line import/no-unresolved
+// TODO
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export const client = sanityClient({
@@ -13,4 +13,5 @@ export const client = sanityClient({
 
 const builder = imageUrlBuilder(client);
 
-export const urlFor = (source: SanityImageSource) => builder.image(source);
+export const urlFor = (source: SanityImageSource) =>
+  builder.image(source).toString();
