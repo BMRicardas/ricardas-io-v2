@@ -1,6 +1,7 @@
 import sanityClient from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 // TODO
+// eslint-disable-next-line import/no-unresolved
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export const client = sanityClient({
