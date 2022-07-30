@@ -1,6 +1,7 @@
 import { FC, useContext } from 'react';
 
 import { VisibleContext } from '../../context/visible-context';
+import { capitalizeFirstLetter } from '../../tools/common/capitalize-first-letter';
 
 import classes from './NavigationDots.module.scss';
 
@@ -20,7 +21,7 @@ export const NavigationDots: FC = () => {
                 ? { backgroundColor: '#313BAC' }
                 : {}
             }
-            title={item.toUpperCase()}
+            title={capitalizeFirstLetter(item)}
           >
             <span aria-hidden="true" />
           </a>
