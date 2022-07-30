@@ -75,6 +75,7 @@ const Testimonial: FC = () => {
             <button
               className={classes.testimonialBtn}
               type="button"
+              title="left arrow"
               onClick={() => {
                 handleClick(
                   currentIndex === 0
@@ -88,6 +89,7 @@ const Testimonial: FC = () => {
             <button
               className={classes.testimonialBtn}
               type="button"
+              title="right arrow"
               onClick={() => {
                 handleClick(
                   currentIndex === testimonials.length - 1

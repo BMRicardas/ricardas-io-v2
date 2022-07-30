@@ -106,6 +106,7 @@ const Work: FC = () => {
                     href={work.projectLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="live demo"
                     className={classes.workHoverLink}
                   >
                     <CgWebsite />
@@ -117,6 +118,7 @@ const Work: FC = () => {
                     href={work.codeLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="github repository"
                     className={classes.workHoverLink}
                   >
                     <AiFillGithub />
