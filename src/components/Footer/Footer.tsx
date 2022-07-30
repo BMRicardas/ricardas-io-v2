@@ -1,6 +1,8 @@
+import { FC } from 'react';
+
 import classes from './Footer.module.scss';
 
-export const Footer = () => {
+export const Footer: FC = () => {
   const year = new Date();
   const currentYear = year.getFullYear();
 

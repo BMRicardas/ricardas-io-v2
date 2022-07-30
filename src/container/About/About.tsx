@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 
 import { client, urlFor } from '../../client';
 import { VisibleContext } from '../../context/visible-context';
-import { useVisibilityId } from '../../hooks';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useVisibilityId } from '../../tools/hooks';
+import { useIntersectionObserver } from '../../tools/hooks/use-intersection-observer';
 import { MotionWrap } from '../../wrapper';
 
 import classes from './About.module.scss';
@@ -26,10 +26,10 @@ interface AboutItem {
   title: string;
 }
 
-const About = () => {
-  const [abouts, setAbouts] = useState<AboutItem[] | []>([]);
+const About: FC = () => {
+  const [abouts, setAbouts] = useState<AboutItem[]>([]);
 
-  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(aboutRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
@@ -57,9 +57,9 @@ const About = () => {
               className={classes.profileItem}
               key={about.title + i}
             >
-              <img src={`${urlFor(about.imgUrl)}`} alt={about.title} />
-              <h2 style={{ marginTop: '2rem' }}>{about.title}</h2>
-              <p style={{ marginTop: '1rem' }}>{about.description}</p>
+              <img src={urlFor(about.imgUrl)} alt={about.title} />
+              <h2>{about.title}</h2>
+              <p>{about.description}</p>
             </motion.div>
           ))}
         </div>

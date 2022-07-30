@@ -1,12 +1,13 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { AiFillEye, AiFillGithub } from 'react-icons/ai';
+import { AiFillGithub } from 'react-icons/ai';
+import { CgWebsite } from 'react-icons/cg';
 
 import { client, urlFor } from '../../client';
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { VisibleContext } from '../../context/visible-context';
-import { useVisibilityId } from '../../hooks';
+import { useVisibilityId } from '../../tools/hooks';
+import { useIntersectionObserver } from '../../tools/hooks/use-intersection-observer';
+import { AppWrap, MotionWrap } from '../../wrapper';
 
 import classes from './Work.module.scss';
 
@@ -30,13 +31,16 @@ interface WorkItem {
   title: string;
 }
 
-const Work = () => {
+const Work: FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
-  const [works, setWorks] = useState<WorkItem[] | []>([]);
-  const [filterWork, setFilterWork] = useState<WorkItem[] | []>([]);
+  const [animateCard, setAnimateCard] = useState<{
+    y: number;
+    opacity: number;
+  }>({ y: 0, opacity: 1 });
+  const [works, setWorks] = useState<WorkItem[]>([]);
+  const [filterWork, setFilterWork] = useState<WorkItem[]>([]);
 
-  const workRef = useRef<HTMLDivElement | null>(null);
+  const workRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(workRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
@@ -74,20 +78,18 @@ const Work = () => {
         Section
       </h2>
       <div className={classes.workFilter}>
-        {['UI/UX', 'Web App', 'Mobile App', 'React JS', 'All'].map(
-          (item, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => handleWorkFilter(item)}
-              className={`${classes.workFilterItem} ${
-                activeFilter === item ? classes.itemActive : ''
-              }`}
-            >
-              {item}
-            </button>
-          )
-        )}
+        {['TypeScript', 'Axios', 'React', 'All'].map((item, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => handleWorkFilter(item)}
+            className={`${classes.workFilterItem} ${
+              activeFilter === item ? classes.itemActive : ''
+            }`}
+          >
+            {item}
+          </button>
+        ))}
       </div>
       <motion.div
         animate={animateCard}
@@ -97,50 +99,35 @@ const Work = () => {
         {filterWork.map((work, i) => (
           <div className={classes.workItem} key={i}>
             <div className={classes.workImg}>
-              <img src={`${urlFor(work.imgUrl)}`} alt={work.title} />
-              <motion.div
-                whileHover={{ opacity: [0, 1] }}
-                transition={{
-                  duration: 0.25,
-                  ease: 'easeInOut',
-                  staggerChildren: 0.5,
-                }}
-                className={classes.workHover}
-              >
-                <a
-                  href={work.projectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
+              <img src={urlFor(work.imgUrl)} alt={work.title} />
+              <div className={classes.workHover}>
+                <div>
+                  <a
+                    href={work.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={classes.workHoverLink}
                   >
-                    <AiFillEye />
-                  </motion.div>
-                </a>
-                <a
-                  href={work.codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
+                    <CgWebsite />
+                  </a>
+                </div>
+
+                <div>
+                  <a
+                    href={work.codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={classes.workHoverLink}
                   >
                     <AiFillGithub />
-                  </motion.div>
-                </a>
-              </motion.div>
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className={classes.workContent}>
               <h4>{work.title}</h4>
-              <p style={{ marginTop: '1rem' }}>{work.description}</p>
+              <p>{work.description}</p>
 
               <div className={classes.workTag}>
                 <p>{work.tags[0]}</p>

@@ -1,11 +1,11 @@
-import { useContext, useRef } from 'react';
+import { FC, useContext, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import { images } from '../../constants';
 import { VisibleContext } from '../../context/visible-context';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '../../tools/hooks/use-intersection-observer';
 import { AppWrap } from '../../wrapper';
-import { useVisibilityId } from '../../hooks';
+import { useVisibilityId } from '../../tools/hooks';
 
 import classes from './Header.module.scss';
 
@@ -20,8 +20,8 @@ const scaleVariants = {
   },
 };
 
-const Header = () => {
-  const homeRef = useRef<HTMLDivElement | null>(null);
+const Header: FC = () => {
+  const homeRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(homeRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
@@ -37,7 +37,7 @@ const Header = () => {
         <div className={classes.badge}>
           <div className={classes.cmp}>
             <span>👋</span>
-            <div style={{ marginLeft: '2rem' }}>
+            <div>
               <p>Hello, I am</p>
               <h1>Ričardas</h1>
             </div>

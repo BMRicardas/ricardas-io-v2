@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
@@ -6,7 +6,7 @@ import { Logo } from '../Logo/Logo';
 
 import classes from './Navbar.module.scss';
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
   const [toggle, setToggle] = useState(false);
   const [isNavbarShrunk, setIsNavbarShrunk] = useState(false);
 

@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 import classes from './SocialMedia.module.scss';
 
-export const SocialMedia = () => {
+export const SocialMedia: FC = () => {
   return (
     <div className={classes.socialMedia}>
       <a

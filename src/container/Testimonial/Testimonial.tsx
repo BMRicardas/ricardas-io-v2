@@ -1,31 +1,13 @@
-/* eslint-disable no-unused-vars */
-import { useContext, useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { client, urlFor } from '../../client';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '../../tools/hooks/use-intersection-observer';
 import { VisibleContext } from '../../context/visible-context';
-import { useVisibilityId } from '../../hooks';
+import { useVisibilityId } from '../../tools/hooks';
 
 import classes from './Testimonial.module.scss';
-
-interface Brand {
-  _createdAt: string;
-  _id: string;
-  _rev: string;
-  _type: string;
-  _updatedAt: string;
-  imgUrl: {
-    _type: string;
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-  };
-  name: string;
-}
 
 interface TestimonialItem {
   _createdAt: string;
@@ -45,12 +27,11 @@ interface TestimonialItem {
   name: string;
 }
 
-const Testimonial = () => {
-  const [brands, setBrands] = useState<Brand[] | []>([]);
-  const [testimonials, setTestimonials] = useState<TestimonialItem[] | []>([]);
+const Testimonial: FC = () => {
+  const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const testimonialsRef = useRef<HTMLDivElement | null>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(testimonialsRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
@@ -58,14 +39,9 @@ const Testimonial = () => {
 
   useEffect(() => {
     const query = '*[_type == "testimonials"]';
-    const brandsQuery = '*[_type == "brands"]';
 
-    client.fetch(query).then((data) => {
+    client.fetch<TestimonialItem[]>(query).then((data) => {
       setTestimonials(data);
-    });
-
-    client.fetch(brandsQuery).then((data) => {
-      setBrands(data);
     });
   }, []);
 
@@ -73,7 +49,9 @@ const Testimonial = () => {
     setCurrentIndex(index);
   };
 
-  const testi = testimonials[currentIndex];
+  const testimonial = testimonials[currentIndex];
+
+  if (!testimonial) return null;
 
   return (
     <section
@@ -84,12 +62,12 @@ const Testimonial = () => {
       {testimonials.length && (
         <>
           <div className={classes.testimonialItem}>
-            <img src={`${urlFor(testi.imgurl)}`} alt="testimonial" />
+            <img src={urlFor(testimonial.imgurl)} alt="testimonial" />
             <div className={classes.testimonialContent}>
-              <p>{testi.feedback}</p>
+              <p>{testimonial.feedback}</p>
               <div>
-                <h4>{testi.name}</h4>
-                <h5>{testi.company}</h5>
+                <h4>{testimonial.name}</h4>
+                <h5>{testimonial.company}</h5>
               </div>
             </div>
           </div>
@@ -123,17 +101,6 @@ const Testimonial = () => {
           </div>
         </>
       )}
-      <div className={classes.testimonialBrands}>
-        {brands.map((brand) => (
-          <motion.div
-            whileInView={{ opacity: [0, 1] }}
-            transition={{ duration: 0.5, type: 'tween' }}
-            key={brand._id}
-          >
-            <img src={`${urlFor(brand.imgUrl)}`} alt={brand.name} />
-          </motion.div>
-        ))}
-      </div>
     </section>
   );
 };

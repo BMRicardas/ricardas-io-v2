@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
-import { Fragment, useContext, useEffect, useRef, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import { FC, Fragment, useContext, useEffect, useRef, useState } from 'react';
+
+import { useVisibilityId } from 'tools/hooks';
+import { useIntersectionObserver } from 'tools/hooks/use-intersection-observer';
+import { VisibleContext } from 'context/visible-context';
 
 import { client, urlFor } from '../../client';
-import { VisibleContext } from '../../context/visible-context';
-import { useVisibilityId } from '../../hooks';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { MotionWrap } from '../../wrapper';
 
 import classes from './Skills.module.scss';
@@ -46,12 +45,12 @@ interface Skill {
   name: string;
 }
 
-const Skills = () => {
-  const [tooltip, showTooltip] = useState(true);
-  const [experiences, setExperiences] = useState<Experience[] | []>([]);
-  const [skills, setSkills] = useState<Skill[] | []>([]);
+const Skills: FC = () => {
+  // const [tooltip, showTooltip] = useState(true);
+  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
 
-  const skillsRef = useRef<HTMLDivElement | null>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(skillsRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
@@ -72,7 +71,9 @@ const Skills = () => {
 
   return (
     <section ref={skillsRef} id="skills" className={classes.skills}>
-      <h2>Skills & Experiences</h2>
+      <h2>
+        Skills &<span> Experience</span>
+      </h2>
       <div className={classes.wrapper}>
         <div className={classes.skillsContainer}>
           <motion.div className={classes.skillsList}>
@@ -84,7 +85,7 @@ const Skills = () => {
                 key={skill.name}
               >
                 <div style={{ backgroundColor: skill.bgColor }}>
-                  <img src={`${urlFor(skill.icon)}`} alt={skill.name} />
+                  <img src={urlFor(skill.icon)} alt={skill.name} />
                 </div>
                 <p>{skill.name}</p>
               </motion.div>
@@ -106,25 +107,11 @@ const Skills = () => {
                         whileInView={{ opacity: [0, 1] }}
                         transition={{ duration: 0.5 }}
                         className={classes.skillsExpWork}
-                        data-tip={work.desc}
-                        data-for={work.name}
-                        onMouseEnter={() => showTooltip(true)}
-                        onMouseLeave={() => {
-                          showTooltip(false);
-                          setTimeout(() => showTooltip(true), 50);
-                        }}
                       >
                         <h4>{work.name}</h4>
                         <p>{work.company}</p>
+                        <p className={classes.description}>{work.desc}</p>
                       </motion.div>
-                      {tooltip && (
-                        <ReactTooltip
-                          id={work.name}
-                          effect="solid"
-                          arrowColor="#fff"
-                          className={classes.skillsTooltip}
-                        />
-                      )}
                     </Fragment>
                   ))}
                 </motion.div>

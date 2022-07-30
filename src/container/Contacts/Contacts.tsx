@@ -1,18 +1,30 @@
-/* eslint-disable no-unused-vars */
-import { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 import { FaPhoneSquareAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 import { client } from '../../client';
 import { VisibleContext } from '../../context/visible-context';
-import { useVisibilityId } from '../../hooks';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useVisibilityId } from '../../tools/hooks';
+import { useIntersectionObserver } from '../../tools/hooks/use-intersection-observer';
 import { MotionWrap } from '../../wrapper';
 
 import classes from './Contacts.module.scss';
 
-const Footer = () => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const Footer: FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: '',
@@ -20,7 +32,7 @@ const Footer = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const contactsRef = useRef<HTMLDivElement | null>(null);
+  const contactsRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(contactsRef, { threshold: 0.5 });
   const visibleCtx = useContext(VisibleContext);
 
@@ -55,7 +67,7 @@ const Footer = () => {
     <section ref={contactsRef} id="contact" className={classes.contacts}>
       <div className={classes.wrapper}>
         <h2>
-          Take <span>a coffee</span> & chat <span>with me</span>
+          Take <span>a coffee</span> & <span>chat</span> with me
         </h2>
         <div className={classes.cards}>
           <a
@@ -84,6 +96,7 @@ const Footer = () => {
                 name="name"
                 value={name}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className={classes.formItem}>
@@ -93,6 +106,7 @@ const Footer = () => {
                 name="email"
                 value={email}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className={classes.formItem}>
@@ -101,6 +115,9 @@ const Footer = () => {
                 value={message}
                 name="message"
                 onChange={handleInputChange}
+                maxLength={280}
+                rows={4}
+                required
               />
             </div>
             <button
